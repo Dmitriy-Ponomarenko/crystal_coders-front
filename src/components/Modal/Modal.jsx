@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.module.css';
 import { RxCross2 } from 'react-icons/rx';
+import { t } from 'i18next';
 
 const Modal = ({ isOpen, onClose, children, size }) => {
   const [modalWidth, setModalWidth] = useState(size || '343px');
@@ -70,9 +71,9 @@ const Modal = ({ isOpen, onClose, children, size }) => {
   };
 
   const modalCloseButtonStyle = {
-    position: 'absolute',
-    top: '20px',
-    right: '20px',
+    position: 'sticky',
+    top: '0',
+    left: '100%',
     background: 'none',
     border: 'none',
     cursor: 'pointer',

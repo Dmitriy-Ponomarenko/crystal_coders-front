@@ -1,11 +1,11 @@
-.popoverBlock{
+.popoverBlock {
   display: flex;
   flex-direction: column;
   position: absolute;
   width: 137px;
   height: 72px;
   background-color: var(--white);
-  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   align-items: flex-start;
   justify-content: center;
@@ -14,7 +14,7 @@
   transition: max-height 0.5s ease-in-out;
   padding: 14px 20px;
 }
-.popoverBtn{
+.popoverBtn {
   font-size: 14px;
   line-height: 1.28em;
   font-weight: 700;
@@ -22,26 +22,26 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  color: var(--dark-blue);
+  color: #323f4766;
+  transition: color var(--animation);
+  cursor: pointer;
 }
-.transparentBtn{
-  color: #323F4766;
-}
-.settingsIcon{
+
+.popoverBtn:hover {
   color: var(--dark-blue);
 }
 
 @media screen and (min-width: 768px) {
-  .popoverBlock{
+  .popoverBlock {
     width: 157px;
   }
 }
 
 @media only screen and (min-width: minwidthpx) {
-  .popoverBlock{
+  .popoverBlock {
     margin-top: 8px;
   }
-  .popoverBtn{
+  .popoverBtn {
     font-size: 15px;
     line-height: 1.49em;
   }

@@ -93,8 +93,14 @@ const UserSettingsForm = () => {
         className={CSS.settingsForm}
         onSubmit={handleSubmit(data => {
           console.log(data);
-          const {time, liters, email, ...body} = data;
-          dispatch(updateUsersSettings({...body, sportActiveTime:time, dailyWater:liters}));
+          const { time, liters, email, ...body } = data;
+          dispatch(
+            updateUsersSettings({
+              ...body,
+              sportActiveTime: time,
+              dailyWater: liters,
+            })
+          );
         })}
       >
         <div className={CSS.avatarBlock}>
@@ -218,7 +224,7 @@ const UserSettingsForm = () => {
 
             <span className={`${CSS.waterPerDayTitle} waterPerDayTitle`}>
               The required amount of water in liters per day:
-              <span className={CSS.litersPerDay}>{calculateLiters()} L</span>
+              <span className={CSS.litersPerDay}> {calculateLiters()} L</span>
             </span>
 
             <label
@@ -238,7 +244,11 @@ const UserSettingsForm = () => {
             </label>
           </div>
         </div>
-        <input className={`${CSS.submitBtn} submitBtn`} type="submit" value="Save" />
+        <input
+          className={`${CSS.submitBtn} submitBtn`}
+          type="submit"
+          value="Save"
+        />
       </form>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CSS from './UserBarPopover.module.css';
+import css from './UserBarPopover.module.css';
 import { TbSettings } from 'react-icons/tb';
 import { LuLogOut } from 'react-icons/lu';
 import Modal from '../../components/Modal/Modal';
@@ -18,19 +18,19 @@ const UserBarPopover = () => {
   };
 
   return (
-    <div className={CSS.popoverBlock}>
+    <div className={css.popoverBlock}>
       <button
         type="button"
-        className={`${CSS.popoverBtn}`}
+        className={`${css.popoverBtn}`}
         onClick={() => handleOpenModal('settings')}
       >
-        <TbSettings className={CSS.settingsIcon} />
+        <TbSettings className={css.settingsIcon} />
         Settings
       </button>
 
       <button
         type="button"
-        className={`${CSS.popoverBtn} ${CSS.transparentBtn}`}
+        className={`${css.popoverBtn}`}
         onClick={() => handleOpenModal('logout')}
       >
         <LuLogOut />

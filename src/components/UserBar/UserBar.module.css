@@ -14,12 +14,11 @@
   padding: 0 12px 0 12px;
   cursor: pointer;
   border: 1px solid #e8e8e8;
-  transition: all 0.3s;
-  box-shadow: 2px 2px 4px #c5c5c5, -2px -2px 4px var(--white);
+  transition: box-shadow var(--animation);
 }
 
-.userBtn:active {
-  box-shadow: 2px 2px 4px #c5c5c5, -2px -2px 4px var(--white);
+.userBtn:hover {
+  box-shadow: 1px 1px 5px 5px #c5c5c5;
 }
 
 .userBtnName {
