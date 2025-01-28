@@ -76,13 +76,13 @@ const waterSlice = createSlice({
       })
       .addCase(fetchWaterConsumptionForDay.fulfilled, (state, action) => {
         state.waterConsumption.day = action.payload;
-      })
-      // .addCase(fetchRemainingWaterPercentage.fulfilled, (state, action) => {
-      //   state.consumedPercentage = action.payload.consumedPercentage;
-      // })
-      // .addCase(fetchRemainingWaterPercentage.rejected, (state, action) => {
-      //   state.error = action.payload || action.error.message;
-      // });
+      });
+    // .addCase(fetchRemainingWaterPercentage.fulfilled, (state, action) => {
+    //   state.consumedPercentage = action.payload.consumedPercentage;
+    // })
+    // .addCase(fetchRemainingWaterPercentage.rejected, (state, action) => {
+    //   state.error = action.payload || action.error.message;
+    // });
   },
 });
 

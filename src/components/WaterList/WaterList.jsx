@@ -5,6 +5,8 @@ import Modal from '../../components/Modal/Modal';
 import WaterModal from '../../components/WaterModal/WaterModal';
 import DeleteWaterModal from '../../components/DeleteWaterModal/DeleteWaterModal';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { selectVolumes } from '../../redux/water/selectors';
 
 const WaterList = ({ userId }) => {
   const [waterData, setWaterData] = useState([]);
@@ -12,6 +14,8 @@ const WaterList = ({ userId }) => {
   const [editData, setEditData] = useState(null);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
+  const volumes = useSelector(selectVolumes);
+  console.log(volumes);
 
   const fetchWaterData = async () => {
     try {
@@ -21,34 +25,39 @@ const WaterList = ({ userId }) => {
         return;
       }
 
-      const response = await axios.get('https://crystal-coders-back.onrender.com/water', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        'https://crystal-coders-back.onrender.com/water',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const fetchedData = response.data.data.data || [];
+      console.log(fetchedData);
       setWaterData(fetchedData);
     } catch (error) {
-      console.error('Error fetching water consumption data:', error.response ? error.response.data : error);
+      console.error(
+        'Error fetching water consumption data:',
+        error.response ? error.response.data : error
+      );
     }
   };
 
-
   useEffect(() => {
     window.setTimeout(() => {
-      fetchWaterData()
+      fetchWaterData();
     }, 300);
-  }, [userId, isModalOpen, isDeleteModalOpen, setWaterData ]);
-
-
+    fetchWaterData();
+  }, [userId, isModalOpen, isDeleteModalOpen, setWaterData]);
 
   const handleOpenEditModal = (volume, time, id) => {
     setEditData({ volume, time, id });
     setModalOpen(true);
   };
 
-  const handleOpenDeleteModal = (id) => {
+  const handleOpenDeleteModal = id => {
     setDeleteId(id);
     setDeleteModalOpen(true);
   };
@@ -91,7 +100,7 @@ const WaterList = ({ userId }) => {
       {isModalOpen && (
         <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
           <WaterModal
-            operationType={editData ? "edit" : "add"}
+            operationType={editData ? 'edit' : 'add'}
             onClose={handleCloseModal}
             editData={editData}
           />
@@ -109,6 +118,5 @@ const WaterList = ({ userId }) => {
     </div>
   );
 };
-
 
 export default WaterList;
