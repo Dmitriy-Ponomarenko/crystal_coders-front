@@ -6,16 +6,17 @@ import { useTour } from '@reactour/tour';
 import { steps } from '../../components/steps';
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 
-import { useRestoreHome } from '../../redux/utils/returnHomePage.jsx';
+// import { useRestoreHome } from '../../redux/utils/returnHomePage.jsx';
 
 const TrackerPage = () => {
   const { setIsOpen, setSteps } = useTour();
 
-  const restoreHome = useRestoreHome();
+  // const restoreHome = useRestoreHome();
 
-  useEffect(() => {
-    restoreHome();
-  }, [restoreHome]);
+  // useEffect(() => {
+  //   restoreHome();
+  // }, [restoreHome]);
+
   return (
     <div className={css.container}>
       <WaterMainInfo />

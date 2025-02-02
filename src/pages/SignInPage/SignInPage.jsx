@@ -2,17 +2,17 @@ import css from './SignInPage.module.css';
 import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSection';
 import SignInForm from '../../components/SignInForm/SignInForm';
 
-import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-import { useRestoreSession } from '../../redux/utils/returnTrackerPage.jsx';
+// import { useEffect } from 'react';
+// import { useRestoreSession } from '../../redux/utils/returnTrackerPage.jsx';
 
 const SignInPage = () => {
-  const restoreSession = useRestoreSession();
+  // const restoreSession = useRestoreSession();
 
-  useEffect(() => {
-    restoreSession();
-  }, [restoreSession]);
+  // useEffect(() => {
+  //   restoreSession();
+  // }, [restoreSession]);
 
   return (
     <motion.div

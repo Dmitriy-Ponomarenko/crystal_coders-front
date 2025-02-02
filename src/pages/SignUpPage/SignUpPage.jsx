@@ -1,17 +1,17 @@
 import AdvantatgesSection from '../../components/AdvantagesSection/AdvantagesSection';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import css from './SignUpPage.module.css';
-import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-import { useRestoreSession } from '../../redux/utils/returnTrackerPage.jsx';
+// import { useEffect } from 'react';
+// import { useRestoreSession } from '../../redux/utils/returnTrackerPage.jsx';
 
 const SignUpPage = () => {
-  const restoreSession = useRestoreSession();
+  // const restoreSession = useRestoreSession();
 
-  useEffect(() => {
-    restoreSession();
-  }, [restoreSession]);
+  // useEffect(() => {
+  //   restoreSession();
+  // }, [restoreSession]);
 
   return (
     <motion.div

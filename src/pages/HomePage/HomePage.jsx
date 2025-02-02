@@ -3,19 +3,19 @@ import WelcomeSection from '../../components/WelcomeSection/WelcomeSection';
 import css from './HomePage.module.css';
 import '../../index.css';
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
-import { useRestoreSession } from '../../redux/utils/returnTrackerPage.jsx';
-import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
-import { useSelector } from 'react-redux';
+// import { useRestoreSession } from '../../redux/utils/returnTrackerPage.jsx';
+// import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
+// import { useSelector } from 'react-redux';
 
 const HomePage = () => {
-  const restoreSession = useRestoreSession();
-  const selector = useSelector(selectIsLoggedIn);
+  // const restoreSession = useRestoreSession();
+  // const selector = useSelector(selectIsLoggedIn);
 
-  useEffect(() => {
-    restoreSession();
-  }, [restoreSession]);
+  // useEffect(() => {
+  //   restoreSession();
+  // }, [restoreSession]);
 
   return (
     <motion.div
