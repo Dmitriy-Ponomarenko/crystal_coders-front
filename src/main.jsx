@@ -8,11 +8,11 @@ import store from './redux/store';
 import { App } from './components/App';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  //<React.StrictMode>
+  <React.StrictMode>
   <Provider store={store}>
     <BrowserRouter basename="/">
       <App />
     </BrowserRouter>
   </Provider>
-  //</React.StrictMode>
+  </React.StrictMode>
 );
