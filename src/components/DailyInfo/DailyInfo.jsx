@@ -20,10 +20,10 @@ const DailyInfo = ({ selectedDate }) => {
   return (
     <div className={`${css.dailyInfo} dailyInfo`}>
       <div className={css.wrapper}>
-        <ChooseDate selectedDate={selectedDate} /> 
+        <ChooseDate selectedDate={selectedDate} />
         <AddWaterBtn variant="secondary" onClick={handleOpenModal} />
       </div>
-      <WaterList />
+      <WaterList selectedDate={selectedDate} />
 
       {isModalOpen && (
         <ModalSmall isOpen={isModalOpen} onClose={handleCloseModal}>

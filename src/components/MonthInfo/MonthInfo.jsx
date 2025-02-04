@@ -11,7 +11,9 @@ import {
 
 const MonthInfo = ({ selectedDate, setSelectedDate }) => {
   const dispatch = useDispatch();
-  const { waterConsumption, loading, error, remainingPercentage } = useSelector(state => state.water);
+  const { waterConsumption, loading, error, remainingPercentage } = useSelector(
+    state => state.water
+  );
 
   useEffect(() => {
     if (selectedDate) {

@@ -42,6 +42,7 @@ const waterSlice = createSlice({
       .addCase(fetchVolumes.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+        console.log(action.error.message);
       })
       .addCase(fetchVolumeById.pending, state => {
         state.loading = true;
@@ -76,6 +77,7 @@ const waterSlice = createSlice({
       })
       .addCase(fetchWaterConsumptionForDay.fulfilled, (state, action) => {
         state.waterConsumption.day = action.payload;
+        console.log(action.payload);
       });
     // .addCase(fetchRemainingWaterPercentage.fulfilled, (state, action) => {
     //   state.consumedPercentage = action.payload.consumedPercentage;

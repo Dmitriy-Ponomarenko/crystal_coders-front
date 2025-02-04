@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import css from './WaterDetailedInfo.module.css';
-
 import MonthInfo from '../../components/MonthInfo/MonthInfo';
 import UserPanel from '../../components/UserPanel/UserPanel';
 import DailyInfo from '../../components/DailyInfo/DailyInfo.jsx';

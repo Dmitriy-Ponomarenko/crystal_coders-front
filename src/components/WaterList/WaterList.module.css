@@ -3,8 +3,6 @@
   gap: 8px;
   padding: 24px 0;
   margin-bottom: 43px;
-  overflow-x: scroll;
-
 }
 
 .list::-webkit-scrollbar {

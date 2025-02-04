@@ -1,56 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import css from './WaterList.module.css';
 import WaterItem from '../../components/WaterItem/WaterItem';
 import Modal from '../../components/Modal/Modal';
 import WaterModal from '../../components/WaterModal/WaterModal';
 import DeleteWaterModal from '../../components/DeleteWaterModal/DeleteWaterModal';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { selectVolumes } from '../../redux/water/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectWaterConsumption } from '../../redux/water/selectors';
+import { format } from 'date-fns';
+import { fetchWaterConsumptionForDay } from '../../redux/water/operations';
+import { selectUser } from '../../redux/auth/selectors';
 
-const WaterList = ({ userId }) => {
-  const [waterData, setWaterData] = useState([]);
+const WaterList = ({ selectedDate }) => {
+  const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
   const [editData, setEditData] = useState(null);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
-  const volumes = useSelector(selectVolumes);
-  console.log(volumes);
-
-  const fetchWaterData = async () => {
-    try {
-      const token = localStorage.getItem('authToken');
-      if (!token) {
-        console.error('No authentication token found. Please log in.');
-        return;
-      }
-
-      const response = await axios.get(
-        'https://crystal-coders-back.onrender.com/water',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const fetchedData = response.data.data.data || [];
-      console.log(fetchedData);
-      setWaterData(fetchedData);
-    } catch (error) {
-      console.error(
-        'Error fetching water consumption data:',
-        error.response ? error.response.data : error
-      );
-    }
-  };
+  const volumes = useSelector(selectWaterConsumption);
+  const date = format(selectedDate, 'yyyy-MM-dd');
+  const listRef = useRef(null);
 
   useEffect(() => {
-    window.setTimeout(() => {
-      fetchWaterData();
-    }, 300);
-    fetchWaterData();
-  }, [userId, isModalOpen, isDeleteModalOpen, setWaterData]);
+    dispatch(fetchWaterConsumptionForDay(date));
+    toggleScrollbar();
+  }, [volumes.day, selectedDate]);
 
   const handleOpenEditModal = (volume, time, id) => {
     setEditData({ volume, time, id });
@@ -70,7 +43,6 @@ const WaterList = ({ userId }) => {
   const handleCloseModal = () => {
     setModalOpen(false);
     setEditData(null);
-    fetchWaterData();
   };
 
   const handleOpenAddModal = () => {
@@ -78,13 +50,23 @@ const WaterList = ({ userId }) => {
     setModalOpen(true);
   };
 
+  const toggleScrollbar = () => {
+    if (listRef.current) {
+      if (listRef.current.scrollHeight > listRef.current.clientHeight) {
+        listRef.current.style.overflowY = 'auto';
+      } else {
+        listRef.current.style.overflowY = 'hidden';
+      }
+    }
+  };
+
   return (
     <div>
-      <ul className={css.list}>
-        {waterData.length === 0 ? (
+      <ul ref={listRef} className={css.list}>
+        {volumes?.day?.length === 0 || volumes?.day === null ? (
           <li>No water consumption data found.</li>
         ) : (
-          waterData.map(({ _id, volume, time }) => (
+          volumes?.day?.map(({ _id, volume, time }) => (
             <li key={_id} className={css.item}>
               <WaterItem
                 volume={volume}
