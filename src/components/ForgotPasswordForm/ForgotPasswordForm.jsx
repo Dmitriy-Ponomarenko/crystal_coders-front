@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
 import css from './ForgotPasswordForm.module.css';
 import Logo from '../Logo/Logo';
+import toast from 'react-hot-toast';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required(),
@@ -12,6 +13,7 @@ const validationSchema = Yup.object().shape({
 
 const ForgotPasswordForm = () => {
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
@@ -24,6 +26,8 @@ const ForgotPasswordForm = () => {
 
   const onSubmit = async data => {
     const { email } = data;
+    setIsSubmitting(true);
+    setMessage('');
 
     try {
       const response = await fetch(
@@ -40,12 +44,14 @@ const ForgotPasswordForm = () => {
       if (response.ok) {
         setMessage('Reset password email was successfully sent!');
       } else {
-        setMessage('Something wrong... Try again later');
+        toast.error('Something wrong... Try again later');
       }
 
       reset();
     } catch (error) {
       setMessage('Something wrong... Try again later');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -76,8 +82,8 @@ const ForgotPasswordForm = () => {
             </div>
           </div>
 
-          <button type="submit" className={css.resetBtn}>
-            Send message
+          <button type="submit" className={css.resetBtn} disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Send message'}
           </button>
 
           {message && <p className={css.message}>{message}</p>}
