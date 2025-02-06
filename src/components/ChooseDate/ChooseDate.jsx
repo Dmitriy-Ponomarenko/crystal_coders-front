@@ -10,7 +10,7 @@ const ChooseDate = ({ selectedDate }) => {
 
   return (
     <div>
-      <p className={`${css.selectedDate} selectedDate`}>
+      <p className={`${css.selectedDate}`}>
         {isToday ? 'Today' : format(selectedDate, 'd, MMMM')}
       </p>
     </div>

@@ -1,5 +1,5 @@
 .addWaterBtnMainInfo {
-   display: flex;
+  display: flex;
   width: 178px -40px;
   margin-left: auto;
   align-items: center;
@@ -71,13 +71,9 @@
 
 @media screen and (min-width: 1440px) {
   .addWaterBtnMainInfo {
-    position: fixed;
     bottom: 64px;
     left: 50%;
     transform: translateX(calc(-50% - 134px));
     padding: 18px 30px;
   }
 }
-
-
-
