@@ -19,8 +19,6 @@ const UserSettingsModal = () => {
         Settings Tour
       </button>
       <UserSettingsForm />
-
-
     </div>
   );
 };

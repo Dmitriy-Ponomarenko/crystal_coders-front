@@ -1,6 +1,7 @@
 import { CloudinaryContext, Image } from 'cloudinary-react';
 import css from './AdvantagesSection.module.css';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 
 const imageIds = {
   customer1: {
@@ -22,20 +23,16 @@ const AdvantatgesSection = () => {
   const [sectionVisible, setSectionVisible] = useState(false);
   const [customersVisible, setCustomersVisible] = useState(false);
   const [benefitsVisible, setBenefitsVisible] = useState(false);
+  const [isRetina, setIsRetina] = useState(false);
 
   const getImageUrl = (baseId, isRetina) => {
     return isRetina ? imageIds[baseId].retina : imageIds[baseId].nonRetina;
   };
 
-  const isRetina = window.matchMedia(
-    '(min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2)'
-  ).matches;
-
   const fetchUserCount = async () => {
     try {
       const response = await fetch(
         'https://crystal-coders-back.onrender.com/count',
-        // 'http://localhost:3000/count',
         {
           method: 'GET',
           headers: {
@@ -44,12 +41,25 @@ const AdvantatgesSection = () => {
           credentials: 'include',
         }
       );
+
+      if (!response.ok) {
+        throw new Error('Fauled to fetch user count');
+      }
+
       const data = await response.json();
       setUserCount(data.data);
     } catch (err) {
       console.error(err);
+      toast.error('Failed to load user count. Please try again later.');
     }
   };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      '(min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2)'
+    );
+    setIsRetina(mediaQuery.matches);
+  }, []);
 
   useEffect(() => {
     fetchUserCount();
