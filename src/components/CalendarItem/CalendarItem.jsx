@@ -4,11 +4,16 @@ import css from './CalendarItem.module.css';
 const CalendarItem = ({ day, handleDayClick, waterPercentage, isSelected }) => {
   const getButtonStyle = () => {
     if (isSelected) {
-      return { backgroundColor: 'var(--dark-blue)', color: 'var(--light-green)' };
+      return {
+        backgroundColor: 'var(--dark-blue)',
+        color: 'var(--light-green)',
+      };
     } else if (waterPercentage === 0) {
       return { backgroundColor: '#fff' };
     } else if (waterPercentage < 100) {
       return { backgroundColor: 'rgba(50, 63, 71, 0.20)' };
+    } else {
+      return { backgroundColor: '#fff' };
     }
   };
 
